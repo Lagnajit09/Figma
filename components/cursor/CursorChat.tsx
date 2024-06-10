@@ -11,7 +11,6 @@ const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence}: Cur
       previousMessage: null,
       message: e.target.value
     })
-
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
