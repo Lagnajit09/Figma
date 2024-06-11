@@ -1,6 +1,6 @@
 import { useBroadcastEvent, useEventListener, useMyPresence, useOthers } from "@/liveblocks.config"
 import LiveCursors from "./cursor/LiveCursors"
-import { useCallback, useEffect, useState } from "react"
+import React, { useCallback, useEffect, useState } from "react"
 import CursorChat from "./cursor/CursorChat";
 import { CursorMode, CursorState, Reaction, ReactionEvent } from "@/types/type";
 import ReactionSelector from "./reaction/ReactionButton";
@@ -8,7 +8,11 @@ import FlyingReaction from "./reaction/FlyingReaction";
 import useInterval from "@/hooks/useInterval";
 import { validateHeaderName } from "http";
 
-const Live = () => {
+type Props = {
+  canvasRef: React.MutableRefObject<HTMLCanvasElement | null>;
+}
+
+const Live = ({canvasRef}:Props) => {
     const others = useOthers();
     const [{cursor}, updateMyPresence] = useMyPresence() as any;
     const [cursorState, setCursorState] = useState<CursorState>({
@@ -128,13 +132,14 @@ const Live = () => {
 
   return ( 
     <div 
+      id="canvas"
       className="w-full h-[100vh] flex justify-center items-center text-center" 
       onPointerMove={handlePointerMove} 
       onPointerLeave={handlePointerLeave} 
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
     >
-      <h1 className="text-5xl text-white">Figma</h1>
+      <canvas ref={canvasRef}/>
 
       {reaction.map((r) => 
         <FlyingReaction 
