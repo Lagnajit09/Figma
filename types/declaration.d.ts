@@ -3,5 +3,4 @@ declare module "*.module.css" {
   export default classes;
 }
 
-declare module 'fabric'
 declare module 'uuid'
