@@ -5,7 +5,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Live from "@/components/Live";
 import Navbar from "@/components/Navbar/Navbar";
 import RightSidebar from "@/components/RightSidebar";
-import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvasSelectionCreated, handleCanvaseMouseMove, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
+import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvasObjectScaling, handleCanvasSelectionCreated, handleCanvaseMouseMove, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
 import { useEffect, useRef, useState } from "react";
 import { ActiveElement, Attributes } from '@/types/type';
 import { useMutation, useRedo, useStorage, useUndo } from '@/liveblocks.config';
@@ -128,6 +128,12 @@ export default function Page() {
     canvas.on('selection:created', (options: any) => {
       handleCanvasSelectionCreated({
         options, isEditingRef, setElementAttributes
+      })
+    })
+
+    canvas.on('object:scaling', (options: any) => {
+      handleCanvasObjectScaling({
+        options, setElementAttributes
       })
     })
 
