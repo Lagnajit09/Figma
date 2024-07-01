@@ -70,4 +70,4 @@ Contributions are welcome! Please fork this repository and submit a pull request
 
 ## Contact
 
-For any inquiries, please contact the project maintainer at [your-email@example.com].
+For any inquiries, please contact the project maintainer at [projects.lmdev@gmail.com].
